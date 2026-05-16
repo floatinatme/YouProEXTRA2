@@ -27,6 +27,10 @@ on:
         type: boolean
         required: false
         default: false
+      opensafari:
+        type: boolean
+        required: false
+        default: true  
 
 jobs:
   build-tweaks:
@@ -76,6 +80,7 @@ jobs:
           chmod +x /usr/local/bin/tbd
 
       - name: Clone Open in YouTube (Safari Extension)
+        if: inputs.opensafari == true
         run: |
           git clone --quiet -n --depth=1 --filter=tree:0 https://github.com/BillyCurtis/OpenYouTubeSafariExtension.git
           cd OpenYouTubeSafariExtension
